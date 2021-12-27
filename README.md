@@ -2,7 +2,7 @@
 
 有docker 就先build image，docker run時設好port就能使用
 
-沒有docker在venv裡安裝requirements.txt，之後執行start_api.py
+沒有docker在虛擬環境裡安裝requirements.txt，之後執行start_api.py
 
 API設計文件: api_info_swagger.json
 

@@ -9,7 +9,7 @@ import sys
 parser = reqparse.RequestParser()
 parser.add_argument('source', type=str, required=True, location=['form'], help='Source can not blank')
 parser.add_argument('target', type=str, required=True, location=['form'], help='Target can not blank')
-parser.add_argument('amount', type=float, required=True, location=['form'], help='Target can not blank')
+parser.add_argument('amount', type=float, required=True, location=['form'], help='Amount can not blank')
 
 
 def half_up(data):
