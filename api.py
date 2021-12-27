@@ -131,49 +131,49 @@ class CurrenciesChangeResource(Resource):
             if source == 'TWD':
                 if target == 'JPY':
                     ans = half_up(amount * Config.TWD_TO_JPY)
-                    if not isinstance(ans, float):
+                    if not isinstance(ans, str):
                         return ans
                     return jsonify({'code': 0,'result': {'amount': ans}})
                 elif target == 'TWD':
                     ans = half_up(amount)
-                    if not isinstance(ans, float):
+                    if not isinstance(ans, str):
                         return ans
                     return jsonify({'code': 0,'result': {'amount': ans}})
                 else:
                     ans = half_up(amount * Config.TWD_TO_USD)
-                    if not isinstance(ans, float):
+                    if not isinstance(ans, str):
                         return ans
                     return jsonify({'code': 0,'result': {'amount': ans}})
             elif source == 'JPY':
                 if target == 'JPY':
                     ans = half_up(amount)
-                    if not isinstance(ans, float):
+                    if not isinstance(ans, str):
                         return ans
                     return jsonify({'code': 0,'result': {'amount': ans}})
                 elif target == 'TWD':
                     ans = half_up(amount * Config.JPY_TO_TWD)
-                    if not isinstance(ans, float):
+                    if not isinstance(ans, str):
                         return ans
                     return jsonify({'code': 0,'result': {'amount': ans}})
                 else:
                     ans = half_up(amount * Config.JPY_TO_USD)
-                    if not isinstance(ans, float):
+                    if not isinstance(ans, str):
                         return ans
                     return jsonify({'code': 0,'result': {'amount': ans}})
             else:
                 if target == 'JPY':
                     ans = half_up(amount * Config.USD_TO_JPY)
-                    if not isinstance(ans, float):
+                    if not isinstance(ans, str):
                         return ans
                     return jsonify({'code': 0,'result': {'amount': ans}})
                 elif target == 'TWD':
                     ans = half_up(amount * Config.USD_TO_TWD)
-                    if not isinstance(ans, float):
+                    if not isinstance(ans, str):
                         return ans
                     return jsonify({'code': 0,'result': {'amount': ans}})
                 else:
                     ans = half_up(amount)
-                    if not isinstance(ans, float):
+                    if not isinstance(ans, str):
                         return ans
                     return jsonify({'code': 0,'result': {'amount': ans}})
         except Exception as e:

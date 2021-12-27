@@ -14,11 +14,11 @@ source: USD, target: USD, amount: -99
 
 source: TWD, target: JPY, amount: 9999999
 
-source: TWD, target: TWD, amount: 888888
+source: TWD, target: TWD, amount: 888888.003
 
 source: TWD, target: USD, amount: 1000000000
 
-source: JPY, target: JPY, amount: 77777777
+source: JPY, target: JPY, amount: 77777777.007
 
 source: JPY, target: TWD, amount: 1000000000000
 
@@ -28,6 +28,6 @@ source: USD, target: JPY, amount: 66666666.66
 
 source: USD, target: TWD, amount: 7777777.77
 
-source: USD, target: USD, amount: 9999999999.99
+source: USD, target: USD, amount: 9999999999.949
 
 
