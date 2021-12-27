@@ -1,0 +1,121 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "__init__",
+        "description": "",
+        "termsOfService": "",
+        "version": "0.0"
+    },
+    "paths": {
+        "/asiayp/problem3": {
+            "post": {
+                "tags": [
+                    "Currencies Change"
+                ],
+                "description": "Change money from source to target",
+                "parameters": [
+                    {
+                        "name": "source",
+                        "description": "來源幣別",
+                        "in": "formData",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "target",
+                        "description": "目標幣別",
+                        "in": "formData",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "amount",
+                        "description": "金額數字",
+                        "in": "formData",
+                        "type": "number",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/TextModel"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 0,
+                                "result": {
+                                    "amount": "number"
+                                }
+                            }
+                        }
+                    },
+                    "4X": {
+                        "description": "Import data Error",
+                        "schema": {
+                            "$ref": "#/definitions/TextModel"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": "4X",
+                                "result": {
+                                    "error": "message"
+                                }
+                            }
+                        }
+                    },
+                    "50": {
+                        "description": "Output amount over the Max",
+                        "schema": {
+                            "$ref": "#/definitions/TextModel"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 50,
+                                "result": {
+                                    "error": "message"
+                                }
+                            }
+                        }
+                    },
+                    "60": {
+                        "description": "Other Error",
+                        "schema": {
+                            "$ref": "#/definitions/TextModel"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": 60,
+                                "result": {
+                                    "error": "message"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "TextModel": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "type": "string"
+                },
+                "target": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "float"
+                }
+            },
+            "required": [
+                "source",
+                "target",
+                "amount"
+            ]
+        }
+    }
+}
