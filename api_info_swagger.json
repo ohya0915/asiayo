@@ -46,7 +46,7 @@
                             "application/json": {
                                 "code": 0,
                                 "result": {
-                                    "amount": "number"
+                                    "amount": "string"
                                 }
                             }
                         }

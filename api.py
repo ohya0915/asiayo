@@ -23,6 +23,12 @@ def half_up(data):
         return jsonify({'code': 50,'result': {'error': 'amount is over {}!'.format(sys.float_info.max)}})
 
 
+def response_result(data):
+    if not isinstance(data, str):
+        return data
+    return jsonify({'code': 0,'result': {'amount': data}})
+
+
 class TextModel(Schema):
     type = 'object'
     properties = {
@@ -131,51 +137,33 @@ class CurrenciesChangeResource(Resource):
             if source == 'TWD':
                 if target == 'JPY':
                     ans = half_up(amount * Config.TWD_TO_JPY)
-                    if not isinstance(ans, str):
-                        return ans
-                    return jsonify({'code': 0,'result': {'amount': ans}})
+                    return response_result(ans)
                 elif target == 'TWD':
                     ans = half_up(amount)
-                    if not isinstance(ans, str):
-                        return ans
-                    return jsonify({'code': 0,'result': {'amount': ans}})
+                    return response_result(ans)
                 else:
                     ans = half_up(amount * Config.TWD_TO_USD)
-                    if not isinstance(ans, str):
-                        return ans
-                    return jsonify({'code': 0,'result': {'amount': ans}})
+                    return response_result(ans)
             elif source == 'JPY':
                 if target == 'JPY':
                     ans = half_up(amount)
-                    if not isinstance(ans, str):
-                        return ans
-                    return jsonify({'code': 0,'result': {'amount': ans}})
+                    return response_result(ans)
                 elif target == 'TWD':
                     ans = half_up(amount * Config.JPY_TO_TWD)
-                    if not isinstance(ans, str):
-                        return ans
-                    return jsonify({'code': 0,'result': {'amount': ans}})
+                    return response_result(ans)
                 else:
                     ans = half_up(amount * Config.JPY_TO_USD)
-                    if not isinstance(ans, str):
-                        return ans
-                    return jsonify({'code': 0,'result': {'amount': ans}})
+                    return response_result(ans)
             else:
                 if target == 'JPY':
                     ans = half_up(amount * Config.USD_TO_JPY)
-                    if not isinstance(ans, str):
-                        return ans
-                    return jsonify({'code': 0,'result': {'amount': ans}})
+                    return response_result(ans)
                 elif target == 'TWD':
                     ans = half_up(amount * Config.USD_TO_TWD)
-                    if not isinstance(ans, str):
-                        return ans
-                    return jsonify({'code': 0,'result': {'amount': ans}})
+                    return response_result(ans)
                 else:
                     ans = half_up(amount)
-                    if not isinstance(ans, str):
-                        return ans
-                    return jsonify({'code': 0,'result': {'amount': ans}})
+                    return response_result(ans)
         except Exception as e:
             return jsonify({'code': 60,'result': {'error': e}})
 
