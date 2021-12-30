@@ -1,6 +1,5 @@
 
 from flask_restful import Resource, reqparse
-from urllib import parse
 from flask import jsonify
 from flask_restful_swagger_2 import swagger, Schema
 from config import Config
