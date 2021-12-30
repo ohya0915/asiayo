@@ -2,10 +2,8 @@ from flask import Flask
 from flask_restful_swagger_2 import Api
 from flask_cors import CORS
 from config import Config
-import os
 
 app = Flask(__name__)
-
 
 app.config['JSON_AS_ASCII'] = Config.TEST_API_JSON_AS_ASCII
 api = Api(app, api_version='0.0', api_spec_url='/api/swagger')

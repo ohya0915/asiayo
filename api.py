@@ -1,32 +1,16 @@
 
 from flask_restful import Resource, reqparse
 from urllib import parse
-from flask import request, jsonify
+from flask import jsonify
 from flask_restful_swagger_2 import swagger, Schema
 from config import Config
+from utils import half_up, response_result
 import sys
 
 parser = reqparse.RequestParser()
 parser.add_argument('source', type=str, required=True, location=['form'], help='Source can not blank')
 parser.add_argument('target', type=str, required=True, location=['form'], help='Target can not blank')
 parser.add_argument('amount', type=float, required=True, location=['form'], help='Amount can not blank')
-
-
-def half_up(data):
-    n = data * 1000 % 10
-    try:
-        if n >= 5:
-            return format((int(data * 100) + 1) / 100, ',')
-        else:
-            return format(int(data * 100) / 100, ',')
-    except:
-        return jsonify({'code': 50,'result': {'error': 'amount is over {}!'.format(sys.float_info.max)}})
-
-
-def response_result(data):
-    if not isinstance(data, str):
-        return data
-    return jsonify({'code': 0,'result': {'amount': data}})
 
 
 class TextModel(Schema):
@@ -124,7 +108,7 @@ class CurrenciesChangeResource(Resource):
         }
     })
     def post(self):
-        args = parser.copy().remove_argument('file').parse_args()
+        args = parser.copy().parse_args()
         source = args['source']
         target = args['target']
         amount = args['amount']
@@ -136,34 +120,25 @@ class CurrenciesChangeResource(Resource):
         try:
             if source == 'TWD':
                 if target == 'JPY':
-                    ans = half_up(amount * Config.TWD_TO_JPY)
-                    return response_result(ans)
+                    return response_result(half_up(amount * Config.TWD_TO_JPY))
                 elif target == 'TWD':
-                    ans = half_up(amount)
-                    return response_result(ans)
+                    return response_result(half_up(amount))
                 else:
-                    ans = half_up(amount * Config.TWD_TO_USD)
-                    return response_result(ans)
+                    return response_result(half_up(amount * Config.TWD_TO_USD))
             elif source == 'JPY':
                 if target == 'JPY':
-                    ans = half_up(amount)
-                    return response_result(ans)
+                    return response_result(half_up(amount))
                 elif target == 'TWD':
-                    ans = half_up(amount * Config.JPY_TO_TWD)
-                    return response_result(ans)
+                    return response_result(half_up(amount * Config.JPY_TO_TWD))
                 else:
-                    ans = half_up(amount * Config.JPY_TO_USD)
-                    return response_result(ans)
+                    return response_result(half_up(amount * Config.JPY_TO_USD))
             else:
                 if target == 'JPY':
-                    ans = half_up(amount * Config.USD_TO_JPY)
-                    return response_result(ans)
+                    return response_result(half_up(amount * Config.USD_TO_JPY))
                 elif target == 'TWD':
-                    ans = half_up(amount * Config.USD_TO_TWD)
-                    return response_result(ans)
+                    return response_result(half_up(amount * Config.USD_TO_TWD))
                 else:
-                    ans = half_up(amount)
-                    return response_result(ans)
+                    return response_result(half_up(amount))
         except Exception as e:
             return jsonify({'code': 60,'result': {'error': e}})
 
